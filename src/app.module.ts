@@ -11,6 +11,7 @@ import { PrismaService } from '../prisma/prisma.service';
 
 import { UsersModule } from './services/users/module/users.module';
 import { ExampleModule } from './example/example.module';
+import { AuthModule } from './services/auth/auth.module';
 
 
 @Module({
@@ -40,6 +41,7 @@ import { ExampleModule } from './example/example.module';
     }),
     UsersModule,
     ExampleModule,
+    AuthModule,
     ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

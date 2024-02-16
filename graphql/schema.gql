@@ -2,7 +2,9 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""User entity"""
 type User {
+  """User ID"""
   id: Int!
 
   """Nama User"""
@@ -18,10 +20,10 @@ type User {
   hashedfreshToken: String
 
   """Auto Date"""
-  createdAt: DateTime!
+  createdAt: DateTime
 
   """Auto Date"""
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 """
@@ -34,6 +36,12 @@ type Example {
   exampleField: Int!
 }
 
+type authResponse {
+  """Akses token jwt"""
+  accessToken: String!
+  user: User!
+}
+
 type Query {
   user: [User!]!
   usergetById(id: Int!): User!
@@ -41,9 +49,19 @@ type Query {
 }
 
 type Mutation {
+  createUser(createUserInput: UserInput!): User!
   createExample(createExampleInput: CreateExampleInput!): Example!
   updateExample(updateExampleInput: UpdateExampleInput!): Example!
   removeExample(id: Int!): Example!
+
+  """login description"""
+  signIn(authArgs: authInput!): authResponse!
+}
+
+input UserInput {
+  name: String!
+  username: String!
+  password: String!
 }
 
 input CreateExampleInput {
@@ -55,4 +73,12 @@ input UpdateExampleInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
+}
+
+input authInput {
+  """Masukkan username"""
+  username: String!
+
+  """Masukkan password"""
+  password: String!
 }

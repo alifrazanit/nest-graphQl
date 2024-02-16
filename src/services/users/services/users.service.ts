@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { AuthInput } from '../dto/auth.input';
+import { UserInput } from '../dto/users.input';
 
 @Injectable()
 export class UsersService {
+  create(createExampleInput: UserInput) {
+    return 'This action adds a new example';
+  }
+
   findAll() {
     return `This action returns all user`;
   }
@@ -11,7 +15,4 @@ export class UsersService {
     return `This action returns a #${id} example`;
   }
 
-  signUp(payload: AuthInput) {
-    return `This action returns all user`;
-  }
 }
