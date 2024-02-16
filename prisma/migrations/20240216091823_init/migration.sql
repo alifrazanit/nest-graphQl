@@ -12,12 +12,13 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Product" (
+CREATE TABLE "PostedTable" (
     "id" SERIAL NOT NULL,
-    "productName" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT,
+    "published" BOOLEAN DEFAULT false,
 
-    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "PostedTable_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

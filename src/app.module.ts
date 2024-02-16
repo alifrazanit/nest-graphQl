@@ -13,6 +13,7 @@ import { UsersModule } from './services/users/module/users.module';
 import { ExampleModule } from './example/example.module';
 import { AuthModule } from './services/auth/module/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { PostModule } from './services/post/module/post.module';
 
 
 @Module({
@@ -46,6 +47,7 @@ import { ConfigModule } from '@nestjs/config';
     UsersModule,
     ExampleModule,
     AuthModule,
+    PostModule,
     ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

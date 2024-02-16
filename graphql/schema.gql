@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 """User entity"""
-type User {
+type UserTable {
   """User ID"""
   id: Int!
 
@@ -39,25 +39,51 @@ type Example {
 type authResponse {
   """Akses token jwt"""
   accessToken: String
-  user: User
+  user: UserTable
+}
+
+"""Post entity"""
+type PostTable {
+  """Post ID"""
+  id: Int!
+
+  """title"""
+  title: String
+
+  """content"""
+  content: String
+
+  """published"""
+  published: Boolean
+
+  """Auto Date"""
+  createdAt: DateTime
+
+  """Auto Date"""
+  updatedAt: DateTime
 }
 
 type Query {
-  findAllUser: [User!]!
-  usergetById(id: Int!): User!
+  findAllUser: [UserTable!]!
+  usergetById(id: Int!): UserTable!
   example(id: Int!): Example!
+  getAllPostedTable: [PostTable!]!
+  findByIdPostTable(id: Int!): PostTable!
 }
 
 type Mutation {
-  createUser(createUserInput: UserInput!): User!
-  UpdateUser(updateUserInput: UpdateUserInput!): User!
-  RemoveUser(id: Int!): User!
+  createUser(createUserInput: UserInput!): UserTable!
+  UpdateUser(updateUserInput: UpdateUserInput!): UserTable!
+  RemoveUser(id: Int!): UserTable!
   createExample(createExampleInput: CreateExampleInput!): Example!
   updateExample(updateExampleInput: UpdateExampleInput!): Example!
   removeExample(id: Int!): Example!
 
   """login description"""
   signIn(authArgs: authInput!): authResponse!
+  createPost(createPostInput: PostInput!): PostTable!
+  updatePost(updatePostInput: UpdatePostInput!): PostTable!
+  removePost(id: Int!): PostTable!
 }
 
 input UserInput {
@@ -88,4 +114,17 @@ input authInput {
 
   """Masukkan password"""
   password: String!
+}
+
+input PostInput {
+  title: String!
+  content: String!
+  published: Boolean!
+}
+
+input UpdatePostInput {
+  id: Float!
+  title: String!
+  content: String!
+  published: Boolean!
 }
