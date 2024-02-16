@@ -1,8 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { UserInput } from '../dto/users.input';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { UpdateUserInput, UserInput } from '../dto/users.input';
 import { PrismaService } from 'prisma/prisma.service';
-import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
@@ -27,11 +25,47 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.prismaService.user.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} example`;
+    const userExist = this.prismaService.user.findUnique({
+      where: { id }
+    })
+    if (!userExist) {
+      throw new NotFoundException('User not found');
+    }
+    return userExist;
   }
 
+
+  async update(id: any, payload: UpdateUserInput) {
+    const existingUser = await this.prismaService.user.findUnique({
+      where: { id }
+    });
+    if (!existingUser) {
+      throw new NotFoundException('User not found');
+    }
+    const updatedUser = await this.prismaService.user.update({
+      where: { id },
+      data: payload,
+    });
+    return updatedUser;
+  }
+
+  async remove(id: number) {
+    const existingUser = await this.prismaService.user.findUnique({
+      where: { id },
+    });
+
+    if (!existingUser) {
+      throw new NotFoundException('User not found');
+    }
+
+    await this.prismaService.user.delete({
+      where: { id },
+    });
+  }
+
+  
 }

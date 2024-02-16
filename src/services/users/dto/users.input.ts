@@ -21,3 +21,16 @@ export class UserInput{
     @Field()
     password: string;
 }
+
+@InputType()
+export class UpdateUserInput{
+    @IsNotEmpty()
+    @Field()
+    id:number;
+
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(30)
+    @Field()
+    name: string;
+}

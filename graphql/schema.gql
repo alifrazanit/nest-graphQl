@@ -43,13 +43,15 @@ type authResponse {
 }
 
 type Query {
-  user: [User!]!
+  findAllUser: [User!]!
   usergetById(id: Int!): User!
   example(id: Int!): Example!
 }
 
 type Mutation {
   createUser(createUserInput: UserInput!): User!
+  UpdateUser(updateUserInput: UpdateUserInput!): User!
+  RemoveUser(id: Int!): User!
   createExample(createExampleInput: CreateExampleInput!): Example!
   updateExample(updateExampleInput: UpdateExampleInput!): Example!
   removeExample(id: Int!): Example!
@@ -62,6 +64,11 @@ input UserInput {
   name: String!
   username: String!
   password: String!
+}
+
+input UpdateUserInput {
+  id: Float!
+  name: String!
 }
 
 input CreateExampleInput {
