@@ -11,11 +11,15 @@ import { PrismaService } from '../prisma/prisma.service';
 
 import { UsersModule } from './services/users/module/users.module';
 import { ExampleModule } from './example/example.module';
-import { AuthModule } from './services/auth/auth.module';
+import { AuthModule } from './services/auth/module/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useFactory: () => {

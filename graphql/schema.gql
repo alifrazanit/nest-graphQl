@@ -38,8 +38,8 @@ type Example {
 
 type authResponse {
   """Akses token jwt"""
-  accessToken: String!
-  user: User!
+  accessToken: String
+  user: User
 }
 
 type Query {

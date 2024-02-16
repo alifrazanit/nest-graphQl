@@ -4,9 +4,9 @@ import { User } from '@entities/User.entity';
 
 @ObjectType()
 export class authResponse {
-    @Field(() => String, { description: 'Akses token jwt' })
+    @Field(() => String, { nullable: true, description: 'Akses token jwt' })
     accessToken: string;
 
-    @Field(() => User)
+    @Field(() => User, { nullable: true})
     user: User;
 }
